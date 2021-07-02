@@ -1,8 +1,6 @@
 package com.example.restaurante.Mesa;
 
-import com.example.restaurante.Pedido.Pedido;
-import com.example.restaurante.Pedido.PedidoDTO;
-import com.example.restaurante.Prato;
+import com.example.restaurante.Pedido.PedidoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,10 +8,13 @@ import org.springframework.stereotype.Service;
 public class MesaService {
 
     private final MesaRepository mesaRepository;
+    private final PedidoRepository pedidoRepository;
+
 
     @Autowired
-    public MesaService(MesaRepository mesaRepository) {
+    public MesaService(MesaRepository mesaRepository, PedidoRepository pedidoRepository) {
         this.mesaRepository = mesaRepository;
+        this.pedidoRepository = pedidoRepository;
     }
 
     public Mesa getMesa(Long id) {

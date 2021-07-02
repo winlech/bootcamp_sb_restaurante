@@ -52,4 +52,10 @@ public class MesaRepository {
         return valorConta;
 
     }
+
+    public void removePedido(Pedido pedido) {
+        Mesa mesa = this.findById(pedido.getMesa());
+        Pedido pedidoRm = mesa.getPedidos().stream().filter(p -> pedido.getId().equals(pedido.getId())).findFirst().get();
+        mesa.getPedidos().remove(pedidoRm);
+    }
 }

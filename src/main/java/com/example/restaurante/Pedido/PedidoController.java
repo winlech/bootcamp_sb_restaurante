@@ -18,9 +18,21 @@ public class PedidoController {
         this.pedidoService = pedidoService;
     }
 
+//    @PostMapping("/mesa")
+//    public ResponseEntity<Pedido> addPedido(@RequestBody PedidoDTO pedidoDto) {
+//        Pedido pedido = pedidoService.addPedido(pedidoDto);
+//
+//        HttpStatus status = HttpStatus.OK;
+//
+//        if (pedido == null)
+//            status = HttpStatus.NOT_ACCEPTABLE;
+//
+//        return new ResponseEntity<>(pedido, status);
+//    }
+
     @PostMapping
-    public ResponseEntity<Pedido> addPedido(@RequestBody PedidoDTO pedidoDto) {
-        Pedido pedido = pedidoService.addPedido(pedidoDto);
+    public ResponseEntity<Pedido> createPedido(@RequestBody PedidoDTO pedidoDto) {
+        Pedido pedido = pedidoService.createPedido(pedidoDto);
 
         HttpStatus status = HttpStatus.OK;
 
@@ -28,5 +40,17 @@ public class PedidoController {
             status = HttpStatus.NOT_ACCEPTABLE;
 
         return new ResponseEntity<>(pedido, status);
+    }
+
+    @PutMapping
+    public Pedido updatePedido(@RequestBody Pedido pedido) {
+        pedidoService.updatePedido(pedido);
+
+        return pedido;
+    }
+
+    @DeleteMapping("/{pedidoId}")
+    public ResponseEntity<Pedido> deletePedido(@PathVariable Long pedidoId) {
+        return new ResponseEntity<>(pedidoService.deletePedido(pedidoId), HttpStatus.OK);
     }
 }
